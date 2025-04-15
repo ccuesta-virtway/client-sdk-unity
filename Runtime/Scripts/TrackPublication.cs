@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using LiveKit.Internal;
 using LiveKit.Internal.FFIClients.Requests;
 using LiveKit.Proto;
@@ -7,7 +9,7 @@ namespace LiveKit
     public class TrackPublication
     {
         private TrackPublicationInfo _info;
-        public string Sid => _info.Sid;
+        public string TrackSid => _info.Sid;
         public string Name => _info.Name;
         public TrackKind Kind => _info.Kind;
         public TrackSource Source => _info.Source;
@@ -53,6 +55,8 @@ namespace LiveKit
         {
             Handle = handle;
         }
+
+        public void SetEnabled(bool enabled) => Track?.SetEnabled(enabled);
 
         public void SetSubscribed(bool subscribed)
         {

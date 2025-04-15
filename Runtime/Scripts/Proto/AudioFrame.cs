@@ -1039,7 +1039,7 @@ namespace LiveKit.Proto {
 
     /// <summary>Field number for the "track_source" field.</summary>
     public const int TrackSourceFieldNumber = 3;
-    private readonly static global::LiveKit.Proto.TrackSource TrackSourceDefaultValue = global::LiveKit.Proto.TrackSource.SourceUnknown;
+    private readonly static global::LiveKit.Proto.TrackSource TrackSourceDefaultValue = global::LiveKit.Proto.TrackSource.Unknown;
 
     private global::LiveKit.Proto.TrackSource trackSource_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

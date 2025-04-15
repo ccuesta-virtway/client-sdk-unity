@@ -132,7 +132,7 @@ namespace LiveKit
         public string Metadata { private set; get; }
         public LocalParticipant LocalParticipant { private set; get; }
         public ConnectionState ConnectionState { private set; get; }
-        public bool IsConnected => RoomHandle != null && ConnectionState != ConnectionState.ConnDisconnected;
+        public bool IsConnected => RoomHandle != null && ConnectionState != ConnectionState.Disconnected;
         public E2EEManager E2EEManager { internal set; get; }
         public IReadOnlyDictionary<string, RemoteParticipant> RemoteParticipants => _participants;
 
@@ -169,6 +169,8 @@ namespace LiveKit
             Utils.Debug($"Connect response.... {response}");
             return new ConnectInstruction(res.Connect.AsyncId, this, options);
         }
+
+        public Participant GetParticipantByIdentity (string identity) => GetParticipant(identity);
 
         public void Disconnect()
         {
@@ -272,8 +274,8 @@ namespace LiveKit
                             return;
                         }
                         participant._info.Metadata = e.ParticipantMetadataChanged.Metadata;
-                        ParticipantMetadataChanged?.Invoke(participant);
-                    }
+                            ParticipantMetadataChanged?.Invoke(participant);
+                        }
                     break;
                 case RoomEvent.MessageOneofCase.ParticipantNameChanged:
                     {
@@ -294,7 +296,7 @@ namespace LiveKit
                         {
                             Utils.Debug($"Unable to find participant: {e.ParticipantAttributesChanged.ParticipantIdentity} in Attributes Change Event");
                             return;
-                        }
+                    }
                         participant._info.Attributes.Clear();
                         foreach (var entry in e.ParticipantAttributesChanged.Attributes)
                         {
@@ -321,7 +323,7 @@ namespace LiveKit
                     {
                         var participant = RemoteParticipants[e.TrackPublished.ParticipantIdentity];
                         var publication = new RemoteTrackPublication(e.TrackPublished.Publication.Info, FfiHandle.FromOwnedHandle(e.TrackPublished.Publication.Handle));
-                        participant._tracks.Add(publication.Sid, publication);
+                        participant._tracks.Add(publication.TrackSid, publication);
                         participant.OnTrackPublished(publication);
                         TrackPublished?.Invoke(publication, participant);
                     }
@@ -330,7 +332,7 @@ namespace LiveKit
                     {
                         var participant = RemoteParticipants[e.TrackUnpublished.ParticipantIdentity];
                         var publication = participant.Tracks[e.TrackUnpublished.PublicationSid];
-                        participant._tracks.Remove(publication.Sid);
+                        participant._tracks.Remove(publication.TrackSid);
                         participant.OnTrackUnpublished(publication);
                         TrackUnpublished?.Invoke(publication, participant);
                     }
@@ -344,16 +346,16 @@ namespace LiveKit
 
                         if (publication == null)
                         {
-                            participant._tracks.Add(publication.Sid, publication);
+                            participant._tracks.Add(publication.TrackSid, publication);
                         }
 
-                        if (info.Kind == TrackKind.KindVideo)
+                        if (info.Kind == TrackKind.Video)
                         {
                             var videoTrack = new RemoteVideoTrack(track, this, participant);
                             publication.UpdateTrack(videoTrack);
                             TrackSubscribed?.Invoke(videoTrack, publication, participant);
                         }
-                        else if (info.Kind == TrackKind.KindAudio)
+                        else if (info.Kind == TrackKind.Audio)
                         {
                             var audioTrack = new RemoteAudioTrack(track, this, participant);
                             publication.UpdateTrack(audioTrack);
@@ -533,7 +535,7 @@ namespace LiveKit
             foreach (var pub in publications)
             {
                 var publication = new RemoteTrackPublication(pub.Info, FfiHandle.FromOwnedHandle(pub.Handle));
-                newParticipant._tracks.Add(publication.Sid, publication);
+                newParticipant._tracks.Add(publication.TrackSid, publication);
                 newParticipant.OnTrackPublished(publication);
             }
             return newParticipant;

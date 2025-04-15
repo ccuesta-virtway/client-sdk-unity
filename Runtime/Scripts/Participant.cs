@@ -28,6 +28,8 @@ namespace LiveKit
         public event PublishDelegate TrackPublished;
         public event PublishDelegate TrackUnpublished;
 
+        public int AudioLevel => 0;
+
         public readonly WeakReference<Room> Room;
         public IReadOnlyDictionary<string, TrackPublication> Tracks => _tracks;
 
@@ -64,6 +66,15 @@ namespace LiveKit
 
         internal LocalParticipant(OwnedParticipant participant, Room room) : base(participant, room) { }
 
+        public void SetMicrophoneEnabled(bool enabled)
+        {
+        }
+        public void SetCameraEnabled(bool enabled)
+        {
+        }
+        public void SetScreenShareEnabled(bool enabled)
+        {
+        }
         public PublishTrackInstruction PublishTrack(ILocalTrack localTrack, TrackPublishOptions options)
         {
             if (!Room.TryGetTarget(out var room))
@@ -546,6 +557,25 @@ namespace LiveKit
         public new IReadOnlyDictionary<string, RemoteTrackPublication> Tracks =>
             base.Tracks.ToDictionary(p => p.Key, p => (RemoteTrackPublication)p.Value);
 
+        public IReadOnlyDictionary<string, TrackPublication> AudioTrackPublications => _tracks;
+
+        public IReadOnlyDictionary<string, TrackPublication> VideoTrackPublications => _tracks;
+
+        public TrackPublication GetTrackPublicationBySid (string sid)
+        {
+            if (_tracks.TryGetValue(sid, out var publication))
+                return publication;
+            return null;
+        }
+
+        public void SetVolume(float volume)
+        {
+            //using var request = FFIBridge.Instance.NewRequest<SetVolumeRequest>();
+            //var setVolumeReq = request.request;
+            //setVolumeReq.ParticipantHandle = (ulong)Handle.DangerousGetHandle();
+            //setVolumeReq.Volume = volume;
+            //var resp = request.Send();
+        }
         internal RemoteParticipant(OwnedParticipant participant, Room room) : base(participant, room) { }
     }
 
@@ -572,7 +602,7 @@ namespace LiveKit
             IsDone = true;
             var publication = new LocalTrackPublication(e.Publication.Info);
             publication.UpdateTrack(_localTrack as Track);
-            _localTrack.UpdateSid(publication.Sid);
+            _localTrack.UpdateSid(publication.TrackSid);
             _internalTracks.Add(e.Publication.Info.Sid, publication);
             FfiClient.Instance.PublishTrackReceived -= OnPublish;
         }
@@ -586,7 +616,7 @@ namespace LiveKit
         {
             _asyncId = asyncId;
             FfiClient.Instance.SetLocalMetadataReceived += OnSetLocalMetadata;
-        }
+    }
 
         internal void OnSetLocalMetadata(SetLocalMetadataCallback e)
         {

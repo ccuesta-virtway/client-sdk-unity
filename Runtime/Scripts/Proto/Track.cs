@@ -98,17 +98,17 @@ namespace LiveKit.Proto {
   }
   #region Enums
   public enum TrackKind {
-    [pbr::OriginalName("KIND_UNKNOWN")] KindUnknown = 0,
-    [pbr::OriginalName("KIND_AUDIO")] KindAudio = 1,
-    [pbr::OriginalName("KIND_VIDEO")] KindVideo = 2,
+    [pbr::OriginalName("KIND_UNKNOWN")] Unknown = 0,
+    [pbr::OriginalName("KIND_AUDIO")] Audio = 1,
+    [pbr::OriginalName("KIND_VIDEO")] Video = 2,
   }
 
   public enum TrackSource {
-    [pbr::OriginalName("SOURCE_UNKNOWN")] SourceUnknown = 0,
-    [pbr::OriginalName("SOURCE_CAMERA")] SourceCamera = 1,
-    [pbr::OriginalName("SOURCE_MICROPHONE")] SourceMicrophone = 2,
-    [pbr::OriginalName("SOURCE_SCREENSHARE")] SourceScreenshare = 3,
-    [pbr::OriginalName("SOURCE_SCREENSHARE_AUDIO")] SourceScreenshareAudio = 4,
+    [pbr::OriginalName("SOURCE_UNKNOWN")] Unknown = 0,
+    [pbr::OriginalName("SOURCE_CAMERA")] Camera = 1,
+    [pbr::OriginalName("SOURCE_MICROPHONE")] Microphone = 2,
+    [pbr::OriginalName("SOURCE_SCREENSHARE")] ScreenShare = 3,
+    [pbr::OriginalName("SOURCE_SCREENSHARE_AUDIO")] ScreenShareAudio = 4,
   }
 
   public enum StreamState {
@@ -2066,7 +2066,7 @@ namespace LiveKit.Proto {
 
     /// <summary>Field number for the "kind" field.</summary>
     public const int KindFieldNumber = 3;
-    private readonly static global::LiveKit.Proto.TrackKind KindDefaultValue = global::LiveKit.Proto.TrackKind.KindUnknown;
+    private readonly static global::LiveKit.Proto.TrackKind KindDefaultValue = global::LiveKit.Proto.TrackKind.Unknown;
 
     private global::LiveKit.Proto.TrackKind kind_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2093,7 +2093,7 @@ namespace LiveKit.Proto {
 
     /// <summary>Field number for the "source" field.</summary>
     public const int SourceFieldNumber = 4;
-    private readonly static global::LiveKit.Proto.TrackSource SourceDefaultValue = global::LiveKit.Proto.TrackSource.SourceUnknown;
+    private readonly static global::LiveKit.Proto.TrackSource SourceDefaultValue = global::LiveKit.Proto.TrackSource.Unknown;
 
     private global::LiveKit.Proto.TrackSource source_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3046,7 +3046,7 @@ namespace LiveKit.Proto {
 
     /// <summary>Field number for the "kind" field.</summary>
     public const int KindFieldNumber = 3;
-    private readonly static global::LiveKit.Proto.TrackKind KindDefaultValue = global::LiveKit.Proto.TrackKind.KindUnknown;
+    private readonly static global::LiveKit.Proto.TrackKind KindDefaultValue = global::LiveKit.Proto.TrackKind.Unknown;
 
     private global::LiveKit.Proto.TrackKind kind_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

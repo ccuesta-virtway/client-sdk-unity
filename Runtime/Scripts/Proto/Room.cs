@@ -444,9 +444,9 @@ namespace LiveKit.Proto {
   }
 
   public enum ConnectionState {
-    [pbr::OriginalName("CONN_DISCONNECTED")] ConnDisconnected = 0,
-    [pbr::OriginalName("CONN_CONNECTED")] ConnConnected = 1,
-    [pbr::OriginalName("CONN_RECONNECTING")] ConnReconnecting = 2,
+    [pbr::OriginalName("CONN_DISCONNECTED")] Disconnected = 0,
+    [pbr::OriginalName("CONN_CONNECTED")] Connected = 1,
+    [pbr::OriginalName("CONN_RECONNECTING")] Reconnecting = 2,
   }
 
   public enum DataPacketKind {
@@ -12689,7 +12689,7 @@ namespace LiveKit.Proto {
 
     /// <summary>Field number for the "source" field.</summary>
     public const int SourceFieldNumber = 7;
-    private readonly static global::LiveKit.Proto.TrackSource SourceDefaultValue = global::LiveKit.Proto.TrackSource.SourceUnknown;
+    private readonly static global::LiveKit.Proto.TrackSource SourceDefaultValue = global::LiveKit.Proto.TrackSource.Unknown;
 
     private global::LiveKit.Proto.TrackSource source_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -24772,7 +24772,7 @@ namespace LiveKit.Proto {
 
     /// <summary>Field number for the "state" field.</summary>
     public const int StateFieldNumber = 1;
-    private readonly static global::LiveKit.Proto.ConnectionState StateDefaultValue = global::LiveKit.Proto.ConnectionState.ConnDisconnected;
+    private readonly static global::LiveKit.Proto.ConnectionState StateDefaultValue = global::LiveKit.Proto.ConnectionState.Disconnected;
 
     private global::LiveKit.Proto.ConnectionState state_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
