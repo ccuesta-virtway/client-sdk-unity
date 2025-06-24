@@ -36,6 +36,9 @@ namespace LiveKit
             Sid = sid;
         }
 
+        public void Mute() => SetMute(true);
+        public void Unmute() => SetMute(false);
+
         public void SetMute(bool muted)
         {
             using var request = FFIBridge.Instance.NewRequest<LocalTrackMuteRequest>();
