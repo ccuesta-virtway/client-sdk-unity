@@ -10586,7 +10586,7 @@ namespace LiveKit.Proto {
 
     /// <summary>Field number for the "level" field.</summary>
     public const int LevelFieldNumber = 1;
-    private readonly static global::LiveKit.Proto.LogLevel LevelDefaultValue = global::LiveKit.Proto.LogLevel.LogError;
+    private readonly static global::LiveKit.Proto.LogLevel LevelDefaultValue = global::LiveKit.Proto.LogLevel.LogDebug;
 
     private global::LiveKit.Proto.LogLevel level_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

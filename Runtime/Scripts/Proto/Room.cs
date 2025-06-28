@@ -437,10 +437,10 @@ namespace LiveKit.Proto {
   }
 
   public enum ConnectionQuality {
-    [pbr::OriginalName("QUALITY_POOR")] QualityPoor = 0,
-    [pbr::OriginalName("QUALITY_GOOD")] QualityGood = 1,
-    [pbr::OriginalName("QUALITY_EXCELLENT")] QualityExcellent = 2,
-    [pbr::OriginalName("QUALITY_LOST")] QualityLost = 3,
+    [pbr::OriginalName("QUALITY_POOR")] Poor = 0,
+    [pbr::OriginalName("QUALITY_GOOD")] Good = 1,
+    [pbr::OriginalName("QUALITY_EXCELLENT")] Excellent = 2,
+    [pbr::OriginalName("QUALITY_LOST")] Lost = 3,
   }
 
   public enum ConnectionState {
@@ -22587,7 +22587,7 @@ namespace LiveKit.Proto {
 
     /// <summary>Field number for the "quality" field.</summary>
     public const int QualityFieldNumber = 2;
-    private readonly static global::LiveKit.Proto.ConnectionQuality QualityDefaultValue = global::LiveKit.Proto.ConnectionQuality.QualityPoor;
+    private readonly static global::LiveKit.Proto.ConnectionQuality QualityDefaultValue = global::LiveKit.Proto.ConnectionQuality.Poor;
 
     private global::LiveKit.Proto.ConnectionQuality quality_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

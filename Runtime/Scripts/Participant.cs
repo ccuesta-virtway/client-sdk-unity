@@ -65,7 +65,8 @@ namespace LiveKit
             base.Tracks.ToDictionary(p => p.Key, p => (LocalTrackPublication)p.Value);
 
         internal LocalParticipant(OwnedParticipant participant, Room room) : base(participant, room) { }
-
+/*
+ *      TODO:
         public void SetMicrophoneEnabled(bool enabled)
         {
         }
@@ -75,6 +76,7 @@ namespace LiveKit
         public void SetScreenShareEnabled(bool enabled)
         {
         }
+*/
         public PublishTrackInstruction PublishTrack(ILocalTrack localTrack, TrackPublishOptions options)
         {
             if (!Room.TryGetTarget(out var room))
@@ -568,14 +570,6 @@ namespace LiveKit
             return null;
         }
 
-        public void SetVolume(float volume)
-        {
-            //using var request = FFIBridge.Instance.NewRequest<SetVolumeRequest>();
-            //var setVolumeReq = request.request;
-            //setVolumeReq.ParticipantHandle = (ulong)Handle.DangerousGetHandle();
-            //setVolumeReq.Volume = volume;
-            //var resp = request.Send();
-        }
         internal RemoteParticipant(OwnedParticipant participant, Room room) : base(participant, room) { }
     }
 

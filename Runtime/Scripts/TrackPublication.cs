@@ -21,8 +21,9 @@ namespace LiveKit
         public Proto.EncryptionType EncryptionType => _info.EncryptionType;
 
         public Track Track { private set; get; }
-        public Track VideoTrack { private set; get; }
-        public Track AudioTrack { private set; get; }
+        public Track VideoTrack => Track;
+        public Track AudioTrack => Track;
+        public bool IsMuted => Muted;
 
         protected TrackPublication(TrackPublicationInfo info)
         {
@@ -58,7 +59,16 @@ namespace LiveKit
             Handle = handle;
         }
 
-        public void SetEnabled(bool enabled) => Track?.SetEnabled(enabled);
+        public void SetEnabled(bool enabled)
+        {
+            using var request = FFIBridge.Instance.NewRequest<EnableRemoteTrackPublicationRequest>();
+            var req = request.request;
+            req.Enabled = enabled;
+            req.TrackPublicationHandle = (ulong)Handle.DangerousGetHandle();
+            using var resp = request.Send();
+            FfiResponse res = resp;
+        }
+        public bool IsEnabled => !Muted;
 
         public void SetSubscribed(bool subscribed)
         {
