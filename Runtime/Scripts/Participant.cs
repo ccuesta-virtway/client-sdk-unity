@@ -559,9 +559,12 @@ namespace LiveKit
         public new IReadOnlyDictionary<string, RemoteTrackPublication> Tracks =>
             base.Tracks.ToDictionary(p => p.Key, p => (RemoteTrackPublication)p.Value);
 
-        public IReadOnlyDictionary<string, TrackPublication> AudioTrackPublications => _tracks;
+        public IReadOnlyDictionary<string, TrackPublication> AudioTrackPublications => 
+            base.Tracks.Where(p => p.Value.Kind == TrackKind.Audio).ToDictionary(p => p.Key, p => p.Value);
 
-        public IReadOnlyDictionary<string, TrackPublication> VideoTrackPublications => _tracks;
+        public IReadOnlyDictionary<string, TrackPublication> VideoTrackPublications =>
+            base.Tracks.Where(p => p.Value.Kind == TrackKind.Video).ToDictionary(p => p.Key, p => p.Value);
+
 
         public TrackPublication GetTrackPublicationBySid (string sid)
         {

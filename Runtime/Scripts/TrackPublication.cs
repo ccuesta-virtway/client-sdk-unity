@@ -21,8 +21,8 @@ namespace LiveKit
         public Proto.EncryptionType EncryptionType => _info.EncryptionType;
 
         public Track Track { private set; get; }
-        public Track VideoTrack => Track;
-        public Track AudioTrack => Track;
+        public Track VideoTrack => (Kind == TrackKind.Video) ? Track : null;
+        public Track AudioTrack => (Kind == TrackKind.Audio) ? Track : null;
         public bool IsMuted => Muted;
 
         protected TrackPublication(TrackPublicationInfo info)
