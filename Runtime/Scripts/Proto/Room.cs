@@ -358,7 +358,7 @@ namespace LiveKit.Proto {
             new pbr::GeneratedClrTypeInfo(typeof(global::LiveKit.Proto.TrackPublishOptions), global::LiveKit.Proto.TrackPublishOptions.Parser, new[]{ "VideoEncoding", "AudioEncoding", "VideoCodec", "Dtx", "Red", "Simulcast", "Source", "Stream" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::LiveKit.Proto.IceServer), global::LiveKit.Proto.IceServer.Parser, new[]{ "Urls", "Username", "Password" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::LiveKit.Proto.RtcConfig), global::LiveKit.Proto.RtcConfig.Parser, new[]{ "IceTransportType", "ContinualGatheringPolicy", "IceServers" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::LiveKit.Proto.RoomOptions), global::LiveKit.Proto.RoomOptions.Parser, new[]{ "AutoSubscribe", "AdaptiveStream", "Dynacast", "E2Ee", "RtcConfig", "JoinRetries" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::LiveKit.Proto.RoomConnectOptions), global::LiveKit.Proto.RoomConnectOptions.Parser, new[]{ "AutoSubscribe", "AdaptiveStream", "Dynacast", "E2Ee", "RtcConfig", "JoinRetries" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::LiveKit.Proto.TranscriptionSegment), global::LiveKit.Proto.TranscriptionSegment.Parser, new[]{ "Id", "Text", "StartTime", "EndTime", "Final", "Language" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::LiveKit.Proto.BufferInfo), global::LiveKit.Proto.BufferInfo.Parser, new[]{ "DataPtr", "DataLen" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::LiveKit.Proto.OwnedBuffer), global::LiveKit.Proto.OwnedBuffer.Parser, new[]{ "Handle", "Data" }, null, null, null, null),
@@ -561,10 +561,10 @@ namespace LiveKit.Proto {
 
     /// <summary>Field number for the "options" field.</summary>
     public const int OptionsFieldNumber = 3;
-    private global::LiveKit.Proto.RoomOptions options_;
+    private global::LiveKit.Proto.RoomConnectOptions options_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::LiveKit.Proto.RoomOptions Options {
+    public global::LiveKit.Proto.RoomConnectOptions Options {
       get { return options_; }
       set {
         options_ = value;
@@ -690,7 +690,7 @@ namespace LiveKit.Proto {
       }
       if (other.options_ != null) {
         if (options_ == null) {
-          Options = new global::LiveKit.Proto.RoomOptions();
+          Options = new global::LiveKit.Proto.RoomConnectOptions();
         }
         Options.MergeFrom(other.Options);
       }
@@ -757,7 +757,7 @@ namespace LiveKit.Proto {
           }
           case 26: {
             if (options_ == null) {
-              Options = new global::LiveKit.Proto.RoomOptions();
+              Options = new global::LiveKit.Proto.RoomConnectOptions();
             }
             input.ReadMessage(Options);
             break;
@@ -13653,17 +13653,17 @@ namespace LiveKit.Proto {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class RoomOptions : pb::IMessage<RoomOptions>
+  public sealed partial class RoomConnectOptions : pb::IMessage<RoomConnectOptions>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<RoomOptions> _parser = new pb::MessageParser<RoomOptions>(() => new RoomOptions());
+    private static readonly pb::MessageParser<RoomConnectOptions> _parser = new pb::MessageParser<RoomConnectOptions>(() => new RoomConnectOptions());
     private pb::UnknownFieldSet _unknownFields;
     private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<RoomOptions> Parser { get { return _parser; } }
+    public static pb::MessageParser<RoomConnectOptions> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -13679,7 +13679,7 @@ namespace LiveKit.Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public RoomOptions() {
+    public RoomConnectOptions() {
       OnConstruction();
     }
 
@@ -13687,7 +13687,7 @@ namespace LiveKit.Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public RoomOptions(RoomOptions other) : this() {
+    public RoomConnectOptions(RoomConnectOptions other) : this() {
       _hasBits0 = other._hasBits0;
       autoSubscribe_ = other.autoSubscribe_;
       adaptiveStream_ = other.adaptiveStream_;
@@ -13700,8 +13700,8 @@ namespace LiveKit.Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public RoomOptions Clone() {
-      return new RoomOptions(this);
+    public RoomConnectOptions Clone() {
+      return new RoomConnectOptions(this);
     }
 
     /// <summary>Field number for the "auto_subscribe" field.</summary>
@@ -13842,12 +13842,12 @@ namespace LiveKit.Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as RoomOptions);
+      return Equals(other as RoomConnectOptions);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(RoomOptions other) {
+    public bool Equals(RoomConnectOptions other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -13985,7 +13985,7 @@ namespace LiveKit.Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(RoomOptions other) {
+    public void MergeFrom(RoomConnectOptions other) {
       if (other == null) {
         return;
       }

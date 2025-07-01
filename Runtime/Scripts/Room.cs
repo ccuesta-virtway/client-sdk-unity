@@ -82,7 +82,7 @@ namespace LiveKit
     }
 
 
-    public class RoomOptions
+    public class RoomConnectOptions
     {
         public bool AutoSubscribe = true;
         public bool Dynacast = true;
@@ -91,9 +91,9 @@ namespace LiveKit
         public RTCConfiguration RtcConfig = null;
         public E2EEOptions E2EE = null;
 
-        public Proto.RoomOptions ToProto()
+        public Proto.RoomConnectOptions ToProto()
         {
-            var proto = new Proto.RoomOptions();
+            var proto = new Proto.RoomConnectOptions();
 
             proto.AutoSubscribe = AutoSubscribe;
             proto.Dynacast = Dynacast;
@@ -117,7 +117,7 @@ namespace LiveKit
         public delegate void RemoteParticipantDelegate(RemoteParticipant participant);
         public delegate void LocalPublishDelegate(TrackPublication publication, LocalParticipant participant);
         public delegate void PublishDelegate(RemoteTrackPublication publication, RemoteParticipant participant);
-        public delegate void SubscribeDelegate(IRemoteTrack track, RemoteTrackPublication publication, RemoteParticipant participant);
+        public delegate void SubscribeDelegate(RemoteTrack track, RemoteTrackPublication publication, RemoteParticipant participant);
         public delegate void MuteDelegate(TrackPublication publication, Participant participant);
         public delegate void SpeakersChangeDelegate(List<Participant> speakers);
         public delegate void ConnectionQualityChangeDelegate(ConnectionQuality quality, Participant participant);
@@ -132,6 +132,7 @@ namespace LiveKit
         public string Metadata { private set; get; }
         public LocalParticipant LocalParticipant { private set; get; }
         public ConnectionState ConnectionState { private set; get; }
+        public ConnectionState State => ConnectionState;
         public bool IsConnected => RoomHandle != null && ConnectionState != ConnectionState.Disconnected;
         public E2EEManager E2EEManager { internal set; get; }
         public IReadOnlyDictionary<string, RemoteParticipant> RemoteParticipants => _participants;
@@ -161,7 +162,7 @@ namespace LiveKit
         public event ParticipantDelegate ParticipantNameChanged;
         public event ParticipantDelegate ParticipantAttributesChanged;
 
-        public ConnectInstruction Connect(string url, string token, RoomOptions options)
+        public ConnectInstruction Connect(string url, string token, RoomConnectOptions options)
         {
             using var response = FFIBridge.Instance.SendConnectRequest(url, token, options);
             Utils.Debug("Connect....");
@@ -562,9 +563,9 @@ namespace LiveKit
     {
         private ulong _asyncId;
         private Room _room;
-        private RoomOptions _roomOptions;
+        private RoomConnectOptions _roomOptions;
 
-        internal ConnectInstruction(ulong asyncId, Room room, RoomOptions options)
+        internal ConnectInstruction(ulong asyncId, Room room, RoomConnectOptions options)
         {
             _asyncId = asyncId;
             _room = room;

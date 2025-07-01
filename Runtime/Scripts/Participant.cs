@@ -28,7 +28,7 @@ namespace LiveKit
         public event PublishDelegate TrackPublished;
         public event PublishDelegate TrackUnpublished;
 
-        public int AudioLevel => 0;
+        public float AudioLevel { set; get; }
 
         public readonly WeakReference<Room> Room;
         public IReadOnlyDictionary<string, TrackPublication> Tracks => _tracks;

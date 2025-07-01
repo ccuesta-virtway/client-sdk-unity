@@ -3052,12 +3052,12 @@ namespace LiveKit.Proto {
 
     /// <summary>Field number for the "width" field.</summary>
     public const int WidthFieldNumber = 1;
-    private readonly static uint WidthDefaultValue = 0;
+    private readonly static int WidthDefaultValue = 0;
 
-    private uint width_;
+    private int width_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint Width {
+    public int Width {
       get { if ((_hasBits0 & 1) != 0) { return width_; } else { return WidthDefaultValue; } }
       set {
         _hasBits0 |= 1;
@@ -3079,12 +3079,12 @@ namespace LiveKit.Proto {
 
     /// <summary>Field number for the "height" field.</summary>
     public const int HeightFieldNumber = 2;
-    private readonly static uint HeightDefaultValue = 0;
+    private readonly static int HeightDefaultValue = 0;
 
-    private uint height_;
+    private int height_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint Height {
+    public int Height {
       get { if ((_hasBits0 & 2) != 0) { return height_; } else { return HeightDefaultValue; } }
       set {
         _hasBits0 |= 2;
@@ -3201,11 +3201,11 @@ namespace LiveKit.Proto {
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
       if (HasWidth) {
         output.WriteRawTag(8);
-        output.WriteUInt32(Width);
+        output.WriteInt32(Width);
       }
       if (HasHeight) {
         output.WriteRawTag(16);
-        output.WriteUInt32(Height);
+        output.WriteInt32(Height);
       }
       if (HasFrameRate) {
         output.WriteRawTag(25);
@@ -3222,10 +3222,10 @@ namespace LiveKit.Proto {
     public int CalculateSize() {
       int size = 0;
       if (HasWidth) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Width);
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Width);
       }
       if (HasHeight) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Height);
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Height);
       }
       if (HasFrameRate) {
         size += 1 + 8;
@@ -3302,11 +3302,11 @@ namespace LiveKit.Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Width = input.ReadUInt32();
+            Width = input.ReadInt32();
             break;
           }
           case 16: {
-            Height = input.ReadUInt32();
+            Height = input.ReadInt32();
             break;
           }
           case 25: {

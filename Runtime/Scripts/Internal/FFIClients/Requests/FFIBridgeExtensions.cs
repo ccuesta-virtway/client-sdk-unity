@@ -3,7 +3,7 @@ namespace LiveKit.Internal.FFIClients.Requests
 {
     public static class FFIBridgeExtensions
     {
-        public static FfiResponseWrap SendConnectRequest(this IFFIBridge ffiBridge, string url, string authToken, RoomOptions roomOptions)
+        public static FfiResponseWrap SendConnectRequest(this IFFIBridge ffiBridge, string url, string authToken, RoomConnectOptions roomOptions)
         {
             Utils.Debug("Connect....");
             using var request = ffiBridge.NewRequest<ConnectRequest>();

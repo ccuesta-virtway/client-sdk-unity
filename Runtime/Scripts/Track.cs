@@ -113,6 +113,11 @@ namespace LiveKit
         }
     }
 
+    public class RemoteTrack : Track, IRemoteTrack
+    {
+        internal RemoteTrack(OwnedTrack track, Room room, Participant participant) : base(track, room, participant) { }
+    }
+
     public sealed class LocalAudioTrack : Track, ILocalTrack, IAudioTrack
     {
         RtcAudioSource _source;
@@ -162,12 +167,12 @@ namespace LiveKit
         }
     }
 
-    public sealed class RemoteAudioTrack : Track, IRemoteTrack, IAudioTrack
+    public sealed class RemoteAudioTrack : RemoteTrack, IAudioTrack
     {
         internal RemoteAudioTrack(OwnedTrack track, Room room, RemoteParticipant participant) : base(track, room, participant) { }
     }
 
-    public sealed class RemoteVideoTrack : Track, IRemoteTrack, IVideoTrack
+    public sealed class RemoteVideoTrack : RemoteTrack, IVideoTrack
     {
         internal RemoteVideoTrack(OwnedTrack track, Room room, RemoteParticipant participant) : base(track, room, participant) { }
     }

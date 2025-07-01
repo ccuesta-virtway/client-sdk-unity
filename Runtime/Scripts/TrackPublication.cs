@@ -49,7 +49,7 @@ namespace LiveKit
 
     public sealed class RemoteTrackPublication : TrackPublication
     {
-        public new IRemoteTrack Track => base.Track as IRemoteTrack;
+        public new RemoteTrack Track => base.Track as RemoteTrack;
         public bool Subscribed = false;
 
         private FfiHandle Handle;
