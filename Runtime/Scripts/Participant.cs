@@ -106,7 +106,7 @@ namespace LiveKit
             unpublish.TrackSid = localTrack.Sid;
             using var response = request.Send();
             FfiResponse res = response;
-            _tracks.Remove(localTrack.Sid);
+            //_tracks.Remove(localTrack.Sid);
             return new UnpublishTrackInstruction(res.UnpublishTrack.AsyncId);
         }
 

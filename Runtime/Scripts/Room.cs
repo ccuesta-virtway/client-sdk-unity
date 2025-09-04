@@ -378,6 +378,7 @@ namespace LiveKit
                         if (LocalParticipant._tracks.ContainsKey(e.LocalTrackUnpublished.PublicationSid))
                         {
                             var publication = LocalParticipant._tracks[e.LocalTrackUnpublished.PublicationSid];
+                            LocalParticipant._tracks.Remove(e.LocalTrackUnpublished.PublicationSid);
                             LocalTrackUnpublished?.Invoke(publication, LocalParticipant);
                         }
                         else
